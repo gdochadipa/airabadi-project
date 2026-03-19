@@ -1,0 +1,20 @@
+# bunfig.toml — Bun configuration for AirAbadi
+# https://bun.sh/docs/runtime/bunfig
+
+[install]
+# Use the exact versions from bun.lockb
+exact = false
+
+# Prefer the fastest registry
+registry = "https://registry.npmjs.org"
+
+# Auto-install peer dependencies
+peer = true
+
+[install.cache]
+# Disable cache during CI if needed: BUN_CONFIG_NO_CACHE=1
+disable = false
+
+[run]
+# Bun will use this shell for script execution
+# bun run dev / bun run build / bun run preview

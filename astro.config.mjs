@@ -1,0 +1,14 @@
+import { defineConfig } from 'astro/config'
+import vue from '@astrojs/vue'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  i18n: {
+    defaultLocale: 'id',
+    locales: ['id', 'en'],
+  },
+  integrations: [vue()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+})

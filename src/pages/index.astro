@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import TheNavbar from '../components/TheNavbar.vue'
+import HeroSection from '../components/HeroSection.vue'
+import StatsBar from '../components/StatsBar.vue'
+import AboutSection from '../components/AboutSection.vue'
+import ProcessSection from '../components/ProcessSection.vue'
+import TestimonialSection from '../components/TestimonialSection.vue'
+import GallerySection from '../components/GallerySection.vue'
+import ContactSection from '../components/ContactSection.vue'
+import TheFooter from '../components/TheFooter.vue'
+import '../styles/global.css'
+const lang = Astro.currentLocale as 'id' | 'en' || 'id'
+---
+
+<BaseLayout>
+  <TheNavbar     lang={lang} client:load />
+  <main>
+    <HeroSection       lang={lang} client:load />
+    <StatsBar          lang={lang} client:load />
+    <AboutSection      lang={lang} client:visible />
+    <ProcessSection    lang={lang} client:visible />
+    <TestimonialSection lang={lang} client:visible />
+    <GallerySection    lang={lang} client:visible />
+    <ContactSection    lang={lang} client:visible />
+  </main>
+  <TheFooter lang={lang} client:visible />
+</BaseLayout>

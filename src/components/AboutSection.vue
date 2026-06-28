@@ -43,17 +43,35 @@ onUnmounted(() => ctx?.revert())
           <div class="grid grid-cols-2 gap-[14px]">
             <!-- Wide block -->
             <div
-              class="col-span-2 h-[264px] rounded-[22px] overflow-hidden flex items-center justify-center text-[72px] relative shadow-[0_8px_36px_rgba(11,48,59,.10)]"
-              style="background: linear-gradient(135deg,#19A7CE 0%,#146C94 100%)"
+              class="col-span-2 h-[264px] rounded-[22px] overflow-hidden relative shadow-[0_8px_36px_rgba(11,48,59,.10)] group"
             >
-              🏊
+              <img 
+                src="https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80" 
+                alt="Pristine water source" 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <!-- Gradient overlay to ensure text readability -->
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0B303B]/80 via-[#0B303B]/20 to-transparent pointer-events-none z-0"></div>
+              
               <span
-                class="absolute bottom-4 left-5 text-[11px] font-bold uppercase tracking-[.10em] text-white/70 font-display"
+                class="absolute bottom-4 left-5 text-[11px] font-bold uppercase tracking-[.10em] text-white font-display drop-shadow-md z-10"
               >{{ t('about.img.text') }}</span>
             </div>
             <!-- Small blocks -->
-            <div class="h-[132px] rounded-[22px] bg-[#EAF6FB] flex items-center justify-center text-[48px]">🚛</div>
-            <div class="h-[132px] rounded-[22px] bg-[#EBF5F0] flex items-center justify-center text-[48px]">💧</div>
+            <div class="h-[132px] rounded-[22px] overflow-hidden relative shadow-[0_4px_20px_rgba(11,48,59,.06)] group">
+              <img 
+                src="https://images.unsplash.com/photo-1564419320461-6870880221ad?auto=format&fit=crop&w=400&q=80" 
+                alt="Water delivery logistics" 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div class="h-[132px] rounded-[22px] overflow-hidden relative shadow-[0_4px_20px_rgba(11,48,59,.06)] group">
+              <img 
+                src="https://images.unsplash.com/photo-1559839914-11aae62e1531?auto=format&fit=crop&w=400&q=80" 
+                alt="Clear water splash" 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
           </div>
         </div>
 

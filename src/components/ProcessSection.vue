@@ -12,19 +12,19 @@ gsap.registerPlugin(ScrollTrigger)
 const steps = computed(() => [
   {
     num: '01',
-    icon: '📩',
+    image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=400&q=80',
     title: t('process.step1.title'),
     desc: t('process.step1.desc'),
   },
   {
     num: '02',
-    icon: '📋',
+    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=400&q=80',
     title: t('process.step2.title'),
     desc: t('process.step2.desc'),
   },
   {
     num: '03',
-    icon: '🚛',
+    image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=400&q=80',
     title: t('process.step3.title'),
     desc: t('process.step3.desc'),
   },
@@ -76,19 +76,25 @@ onUnmounted(() => ctx?.revert())
           <div
             v-for="step in steps"
             :key="step.num"
-            class="process-card relative bg-white border border-[#DCE8EC] rounded-[22px] p-10 transition-all duration-300 hover:-translate-y-[6px] hover:shadow-[0_8px_36px_rgba(11,48,59,.10)] overflow-hidden"
+            class="process-card group relative bg-white border border-[#DCE8EC] rounded-[24px] p-8 lg:p-10 transition-all duration-500 hover:-translate-y-[8px] hover:shadow-[0_24px_48px_-12px_rgba(11,48,59,.12)] overflow-hidden"
           >
             <!-- Step label -->
-            <div class="flex items-center gap-3 font-display text-[10.5px] font-extrabold tracking-[.16em] uppercase text-[#19A7CE] mb-6">
-              {{ step.num }}
-              <span class="flex-1 h-px bg-[#DCE8EC]" />
+            <div class="flex items-center gap-4 font-display text-[11px] font-bold tracking-[.18em] uppercase text-[#19A7CE] mb-8">
+              <span>{{ step.num }}</span>
+              <span class="flex-1 h-px bg-[#DCE8EC] transition-colors duration-500 group-hover:bg-[#19A7CE]/30" />
             </div>
-            <!-- Icon -->
-            <div class="w-[52px] h-[52px] rounded-[14px] bg-[#EAF6FB] flex items-center justify-center text-[24px] mb-5">
-              {{ step.icon }}
+            
+            <!-- Real Image "Icon" -->
+            <div class="relative w-[88px] h-[88px] mb-8 rounded-[24px] overflow-hidden shadow-sm ring-1 ring-[#0B303B]/5 transform-gpu transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md">
+              <img 
+                :src="step.image" 
+                :alt="step.title" 
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.15]" 
+              />
             </div>
-            <h3 class="text-[18px] font-bold text-[#0B303B] mb-3 font-display">{{ step.title }}</h3>
-            <p class="text-[14px] leading-[1.75] text-[#5C7880]">{{ step.desc }}</p>
+            
+            <h3 class="text-[20px] font-bold text-[#0B303B] mb-3 font-display transition-colors duration-300">{{ step.title }}</h3>
+            <p class="text-[15px] leading-[1.7] text-[#5C7880]">{{ step.desc }}</p>
           </div>
         </div>
 

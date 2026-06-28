@@ -29,3 +29,5 @@ Thumbs.db
 # editors
 .vscode/extensions.json
 .idea/
+opencode.json
+.agents

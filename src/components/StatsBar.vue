@@ -10,10 +10,10 @@ const t = useTranslations(props.lang || 'id')
 gsap.registerPlugin(ScrollTrigger)
 
 const stats = computed(() => [
-  { value: 5,  suffix: '+', label: t('stats.years') },
+  { value: 7,  suffix: '+', label: t('stats.years') },
   { value: 95, suffix: '%', label: t('stats.reviews') },
   { value: 2,  suffix: '',  label: t('stats.trucks') },
-  { value: 2,  suffix: '',  label: t('stats.active_trucks') },
+  { value: 1000,  suffix: '+',  label: t('stats.customers') },
 ])
 
 let triggers: ScrollTrigger[] = []

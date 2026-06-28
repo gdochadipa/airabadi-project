@@ -40,7 +40,7 @@ export const ui = {
     'stats.years': 'Tahun Pengalaman',
     'stats.reviews': 'Masukan Positif Pelanggan',
     'stats.trucks': 'Armada Truk',
-    'stats.active_trucks': 'Armada Truk Aktif',
+    'stats.customers': 'Pelanggan',
 
     // Process Section
     'process.eyebrow': 'Proses Kami',
@@ -131,7 +131,7 @@ export const ui = {
     'stats.years': 'Years of Experience',
     'stats.reviews': 'Positive Customer Feedback',
     'stats.trucks': 'Truck Fleet',
-    'stats.active_trucks': 'Active Truck Fleet',
+    'stats.customers': 'Customers',
 
     // Process Section
     'process.eyebrow': 'Our Process',

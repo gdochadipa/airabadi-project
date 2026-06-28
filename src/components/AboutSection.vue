@@ -1,45 +1,22 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ref } from 'vue'
 import { useTranslations } from '../composables/useTranslations'
-import { ui } from '../i18n/ui'
+import { useScrollAnimations } from '../composables/useScrollAnimations'
 
-const props = defineProps<{
-  lang?: keyof typeof ui
-}>()
-
+const props = defineProps<{ lang?: 'id' | 'en' }>()
 const t = useTranslations(props.lang || 'id')
 
-gsap.registerPlugin(ScrollTrigger)
-
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.fromTo('.about-img',
-      { opacity: 0, y: 44 },
-      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-img', start: 'top 88%', toggleActions: 'play none none none' } }
-    )
-    gsap.fromTo('.about-txt',
-      { opacity: 0, x: 44 },
-      { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: '.about-txt', start: 'top 88%', toggleActions: 'play none none none' } }
-    )
-  })
-})
-
-onUnmounted(() => ctx?.revert())
+const sectionRef = ref<HTMLElement | null>(null)
+useScrollAnimations(sectionRef)
 </script>
 
 <template>
-  <section id="about" class="py-[128px] bg-white">
+  <section id="about" ref="sectionRef" class="py-[128px] bg-white">
     <div class="max-w-[1440px] mx-auto px-[clamp(24px,8vw,160px)]">
       <div class="grid grid-cols-12 gap-7 items-start">
 
         <!-- Image Stack -->
-        <div class="about-img col-span-12 lg:col-span-5">
+        <div class="about-img col-span-12 lg:col-span-5 anim-fade-up">
           <div class="grid grid-cols-2 gap-[14px]">
             <!-- Wide block -->
             <div
@@ -76,7 +53,7 @@ onUnmounted(() => ctx?.revert())
         </div>
 
         <!-- Text -->
-        <div class="about-txt col-span-12 lg:col-span-6 lg:col-start-7 flex flex-col justify-start pt-2">
+        <div class="about-txt col-span-12 lg:col-span-6 lg:col-start-7 flex flex-col justify-start pt-2 anim-fade-left">
           <div class="eyebrow inline-flex items-center font-display text-[11px] font-bold tracking-[.15em] uppercase text-[#19A7CE] mb-5">
             {{ t('about.eyebrow') }}
           </div>

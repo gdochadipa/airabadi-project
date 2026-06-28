@@ -11,7 +11,7 @@
   --color-border:     #DCE8EC;
 
   --font-family-display: 'Urbanist', sans-serif;
-  --font-family-body:    'Inter', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -21,6 +21,7 @@
   --shadow-sm: 0 2px 14px rgba(11,48,59,.06);
   --shadow-md: 0 8px 36px rgba(11,48,59,.10);
   --shadow-lg: 0 28px 72px rgba(11,48,59,.13);
+
 }
 
 /* ── Base ─────────────────────────────────────────────── */

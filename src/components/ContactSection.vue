@@ -1,35 +1,21 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ref } from 'vue'
 import { useTranslations } from '../composables/useTranslations'
+import { useScrollAnimations } from '../composables/useScrollAnimations'
 
 const props = defineProps<{ lang?: 'id' | 'en' }>()
 const t = useTranslations(props.lang || 'id')
 
-gsap.registerPlugin(ScrollTrigger)
-
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.fromTo('.cta-block',
-      { opacity: 0, y: 44 },
-      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: '.cta-block', start: 'top 88%', toggleActions: 'play none none none' } }
-    )
-  })
-})
-
-onUnmounted(() => ctx?.revert())
+const sectionRef = ref<HTMLElement | null>(null)
+useScrollAnimations(sectionRef)
 </script>
 
 <template>
-  <section id="contact" class="py-[128px] bg-white">
+  <section id="contact" ref="sectionRef" class="py-[128px] bg-white">
     <div class="max-w-[1440px] mx-auto px-[clamp(24px,8vw,160px)]">
 
       <div
-        class="cta-block relative overflow-hidden rounded-[32px] py-[92px] px-[clamp(28px,6vw,80px)] text-center"
+        class="cta-block relative overflow-hidden rounded-[32px] py-[92px] px-[clamp(28px,6vw,80px)] text-center anim-fade-up"
         style="background: linear-gradient(145deg,#0B303B 0%,#0f2535 100%)"
       >
         <!-- Glow blobs -->

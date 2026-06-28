@@ -7,6 +7,7 @@ import AboutSection from '../../components/AboutSection.vue'
 import ProcessSection from '../../components/ProcessSection.vue'
 import TestimonialSection from '../../components/TestimonialSection.vue'
 import GallerySection from '../../components/GallerySection.vue'
+import WaterCalculator from '../../components/WaterCalculator.vue'
 import ContactSection from '../../components/ContactSection.vue'
 import TheFooter from '../../components/TheFooter.vue'
 import '../../styles/global.css'
@@ -21,6 +22,7 @@ const lang = Astro.currentLocale as 'id' | 'en' || 'en'
     <AboutSection      lang={lang} client:visible />
     <ProcessSection    lang={lang} client:visible />
     <TestimonialSection lang={lang} client:visible />
+    <WaterCalculator   lang={lang} client:visible />
     <GallerySection    lang={lang} client:visible />
     <ContactSection    lang={lang} client:visible />
   </main>

@@ -96,6 +96,23 @@ export const ui = {
     'footer.meet.line3': '80361 ID',
     'footer.copyright': '© 2025 AirAbadi. Hak cipta dilindungi.',
     'footer.tagline': 'Kejernihan Terjaga Hingga ke Tangan Anda',
+
+    // Calculator Section
+    'calculator.title': 'Estimasi Volume & Pengiriman',
+    'calculator.subtitle': 'Hitung kebutuhan air kolam renang atau tangki vila Anda secara instan.',
+    'calculator.purpose': 'Tujuan',
+    'calculator.pool': 'Isi Kolam Renang',
+    'calculator.tank': 'Tangki Vila',
+    'calculator.length': 'Panjang (m)',
+    'calculator.width': 'Lebar (m)',
+    'calculator.depth': 'Kedalaman (m)',
+    'calculator.estimated': 'Estimasi Volume',
+    'calculator.litres': 'Liter',
+    'calculator.fleet': 'Rencana Armada',
+    'calculator.truck8k': 'Truk 8.000 Liter',
+    'calculator.truck5k': 'Truk 5.000 Liter',
+    'calculator.totalTrucks': 'Total Truk',
+    'calculator.cta': 'Pesan via WhatsApp',
   },
   en: {
     // Nav Section
@@ -187,5 +204,22 @@ export const ui = {
     'footer.meet.line3': '80361 ID',
     'footer.copyright': '© 2025 AirAbadi. All rights reserved.',
     'footer.tagline': 'Purity Preserved Until It Reaches Your Hands',
+
+    // Calculator Section
+    'calculator.title': 'Volume & Delivery Estimator',
+    'calculator.subtitle': 'Instantly calculate water needs for your pool or villa tank.',
+    'calculator.purpose': 'Purpose',
+    'calculator.pool': 'Pool Filling',
+    'calculator.tank': 'Villa Tank',
+    'calculator.length': 'Length (m)',
+    'calculator.width': 'Width (m)',
+    'calculator.depth': 'Depth (m)',
+    'calculator.estimated': 'Estimated Volume',
+    'calculator.litres': 'Litres',
+    'calculator.fleet': 'Fleet Plan',
+    'calculator.truck8k': '8,000L Trucks',
+    'calculator.truck5k': '5,000L Trucks',
+    'calculator.totalTrucks': 'Total Trucks',
+    'calculator.cta': 'Book via WhatsApp',
   },
 } as const

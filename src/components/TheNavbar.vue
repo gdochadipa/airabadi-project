@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useTranslations } from '../composables/useTranslations'
+import airLogo from '../assets/icon/air.svg?url'
 
 const props = defineProps<{
   lang?: 'en' | 'id'
@@ -37,22 +38,12 @@ const links = computed(() => [
     ]"
   >
     <div
+    id="logo"
       class="max-w-[1440px] h-full mx-auto px-[clamp(24px,8vw,160px)] flex items-center justify-between"
     >
       <!-- Logo -->
-      <a href="#home" class="flex items-center gap-2 font-display font-extrabold text-[20px] text-[#0B303B]">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-          <circle cx="15" cy="15" r="15" fill="rgba(25,167,206,.12)" />
-          <path
-            d="M15 5C15 5 8 12.5 8 17.5C8 21.09 11.13 24 15 24C18.87 24 22 21.09 22 17.5C22 12.5 15 5 15 5Z"
-            fill="#19A7CE"
-          />
-          <path
-            d="M15 10C15 10 10 15 10 18C10 20.21 12.24 22 15 22C17.76 22 20 20.21 20 18C20 15 15 10 15 10Z"
-            fill="#146C94"
-          />
-        </svg>
-        Air<span class="text-[#19A7CE]">Abadi</span>
+      <a href="#home" class="flex items-center">
+        <img :src="airLogo" alt="AirAbadi" width="145" height="40" class="h-10 w-auto" />
       </a>
 
       <!-- Desktop links -->
@@ -118,7 +109,7 @@ const links = computed(() => [
               {{ link.label }}
             </a>
           </li>
-          
+
           <li class="pt-2 border-t border-[#DCE8EC] mt-2 flex items-center justify-between">
             <a
               :href="props.lang === 'en' ? '/' : '/en/'"
@@ -128,7 +119,7 @@ const links = computed(() => [
               <span class="text-[#5C7880] opacity-40 text-[10px] mx-2">/</span>
               <span :class="props.lang === 'en' ? 'font-bold text-[#0B303B]' : 'text-[#5C7880] opacity-60'">EN</span>
             </a>
-            
+
             <a
               href="https://wa.me/6281234567890"
               class="inline-flex items-center bg-[#19A7CE] text-white text-[13px] font-bold px-5 py-2 rounded-full"

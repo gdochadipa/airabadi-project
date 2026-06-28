@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useTranslations } from '../composables/useTranslations'
+import airLogo from '../assets/icon/air.svg?url'
 
 const props = defineProps<{ lang?: 'id' | 'en' }>()
 const t = useTranslations(props.lang || 'id')
@@ -35,12 +36,8 @@ const socials = [
     >
       <!-- Brand -->
       <div>
-        <a href="#home" class="flex items-center gap-2 font-display font-extrabold text-[20px] text-white mb-4">
-          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-            <circle cx="15" cy="15" r="15" fill="rgba(25,167,206,.15)" />
-            <path d="M15 5C15 5 8 12.5 8 17.5C8 21.09 11.13 24 15 24C18.87 24 22 21.09 22 17.5C22 12.5 15 5 15 5Z" fill="#19A7CE" />
-          </svg>
-          Air<span class="text-[#19A7CE]">Abadi</span>
+        <a href="#home" class="flex items-center mb-4">
+          <img :src="airLogo" alt="AirAbadi" width="145" height="40" class="h-10 w-auto brightness-0 invert" />
         </a>
         <p class="text-[13.5px] leading-[1.75] text-white/42 max-w-[268px] mb-7">
           {{ t('footer.desc') }}

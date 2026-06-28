@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { computed, ref } from 'vue'
 import { useTranslations } from '../composables/useTranslations'
+import { useScrollAnimations } from '../composables/useScrollAnimations'
 
 const props = defineProps<{ lang?: 'id' | 'en' }>()
 const t = useTranslations(props.lang || 'id')
-
-gsap.registerPlugin(ScrollTrigger)
 
 const steps = computed(() => [
   {
@@ -30,36 +27,17 @@ const steps = computed(() => [
   },
 ])
 
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.fromTo('.process-hd',
-      { opacity: 0, y: 44 },
-      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
-        scrollTrigger: { trigger: '.process-hd', start: 'top 88%', toggleActions: 'play none none none' } }
-    )
-    document.querySelectorAll('.process-card').forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 56 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-          delay: i * 0.14,
-          scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' } }
-      )
-    })
-  })
-})
-
-onUnmounted(() => ctx?.revert())
+const sectionRef = ref<HTMLElement | null>(null)
+useScrollAnimations(sectionRef)
 </script>
 
 <template>
-  <section id="process" class="py-[128px] bg-[#F6FAFB]">
+  <section id="process" ref="sectionRef" class="py-[128px] bg-[#F6FAFB]">
     <div class="max-w-[1440px] mx-auto px-[clamp(24px,8vw,160px)]">
       <div class="grid grid-cols-12 gap-7">
 
         <!-- Header -->
-        <div class="process-hd col-span-12 lg:col-span-6 mb-2">
+        <div class="process-hd col-span-12 lg:col-span-6 mb-2 anim-fade-up">
           <div class="eyebrow inline-flex items-center font-display text-[11px] font-bold tracking-[.15em] uppercase text-[#19A7CE] mb-5">
             {{ t('process.eyebrow') }}
           </div>
@@ -76,7 +54,7 @@ onUnmounted(() => ctx?.revert())
           <div
             v-for="step in steps"
             :key="step.num"
-            class="process-card group relative bg-white border border-[#DCE8EC] rounded-[24px] p-8 lg:p-10 transition-all duration-500 hover:-translate-y-[8px] hover:shadow-[0_24px_48px_-12px_rgba(11,48,59,.12)] overflow-hidden"
+            class="process-card group relative bg-white border border-[#DCE8EC] rounded-[24px] p-8 lg:p-10 transition-all duration-500 hover:-translate-y-[8px] hover:shadow-[0_24px_48px_-12px_rgba(11,48,59,.12)] overflow-hidden anim-fade-up"
           >
             <!-- Step label -->
             <div class="flex items-center gap-4 font-display text-[11px] font-bold tracking-[.18em] uppercase text-[#19A7CE] mb-8">

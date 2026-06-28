@@ -1,41 +1,22 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ref } from 'vue'
 import { useTranslations } from '../composables/useTranslations'
+import { useScrollAnimations } from '../composables/useScrollAnimations'
 
 const props = defineProps<{ lang?: 'id' | 'en' }>()
 const t = useTranslations(props.lang || 'id')
 
-gsap.registerPlugin(ScrollTrigger)
-
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.fromTo('.gal-hd',
-      { opacity: 0, x: -44 },
-      { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: '.gal-hd', start: 'top 88%', toggleActions: 'play none none none' } }
-    )
-    gsap.fromTo('.gal-tiles',
-      { opacity: 0, x: 44 },
-      { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: '.gal-tiles', start: 'top 88%', toggleActions: 'play none none none' } }
-    )
-  })
-})
-
-onUnmounted(() => ctx?.revert())
+const sectionRef = ref<HTMLElement | null>(null)
+useScrollAnimations(sectionRef)
 </script>
 
 <template>
-  <section class="py-[128px] bg-[#F6FAFB]">
+  <section id="gallery" ref="sectionRef" class="py-[128px] bg-[#F6FAFB]">
     <div class="max-w-[1440px] mx-auto px-[clamp(24px,8vw,160px)]">
       <div class="grid grid-cols-12 gap-7 items-start">
 
         <!-- Text side -->
-        <div class="gal-hd col-span-12 lg:col-span-5 pr-8">
+        <div class="gal-hd col-span-12 lg:col-span-5 pr-8 anim-fade-left">
           <div class="eyebrow inline-flex items-center font-display text-[11px] font-bold tracking-[.15em] uppercase text-[#19A7CE] mb-5">
             {{ t('gallery.eyebrow') }}
           </div>
@@ -56,36 +37,50 @@ onUnmounted(() => ctx?.revert())
 
         <!-- Tile grid -->
         <div
-          class="gal-tiles col-span-12 lg:col-span-6 lg:col-start-7 grid grid-cols-2 gap-[14px]"
+          class="gal-tiles col-span-12 lg:col-span-6 lg:col-start-7 grid grid-cols-2 gap-[14px] anim-fade-right"
           style="grid-template-rows: 240px 240px"
         >
           <!-- Tall tile -->
           <div
-            class="row-span-2 rounded-[22px] overflow-hidden flex items-center justify-center text-[80px] relative transition-transform duration-300 hover:scale-[1.02]"
+            class="row-span-2 rounded-[22px] overflow-hidden relative transition-transform duration-300 hover:scale-[1.02]"
             style="background: linear-gradient(145deg,#19A7CE 0%,#146C94 100%)"
           >
-            🚛
+            <img
+              src="https://images.unsplash.com/photo-1601584115195-04f3e0d5f5de?auto=format&fit=crop&w=600&q=80"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-[#0B303B]/20"></div>
             <span
               class="absolute bottom-[14px] left-[14px] font-display text-[11px] font-bold tracking-[.10em] uppercase text-white bg-[rgba(11,48,59,.26)] backdrop-blur-md px-3 py-[5px] rounded-full"
             >{{ t('gallery.badge.fleet') }}</span>
           </div>
 
           <div
-            class="rounded-[22px] overflow-hidden flex items-center justify-center text-[52px] relative transition-transform duration-300 hover:scale-[1.02] bg-[#EAF6FB]"
+            class="rounded-[22px] overflow-hidden relative transition-transform duration-300 hover:scale-[1.02]"
           >
-            💧
+            <img
+              src="https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=400&q=80"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-[#0B303B]/20"></div>
             <span
-              class="absolute bottom-[14px] left-[14px] font-display text-[11px] font-bold tracking-[.10em] uppercase text-[#0B303B] bg-white/55 backdrop-blur-md px-3 py-[5px] rounded-full"
+              class="absolute bottom-[14px] left-[14px] font-display text-[11px] font-bold tracking-[.10em] uppercase text-white bg-[rgba(11,48,59,.26)] backdrop-blur-md px-3 py-[5px] rounded-full"
             >{{ t('gallery.badge.water') }}</span>
           </div>
 
           <div
-            class="rounded-[22px] overflow-hidden flex items-center justify-center text-[52px] relative transition-transform duration-300 hover:scale-[1.02]"
-            style="background: linear-gradient(145deg,#EBF5F0 0%,#C8E6DA 100%)"
+            class="rounded-[22px] overflow-hidden relative transition-transform duration-300 hover:scale-[1.02]"
           >
-            🏡
+            <img
+              src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&q=80"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-[#0B303B]/20"></div>
             <span
-              class="absolute bottom-[14px] left-[14px] font-display text-[11px] font-bold tracking-[.10em] uppercase text-[#0B303B] bg-white/55 backdrop-blur-md px-3 py-[5px] rounded-full"
+              class="absolute bottom-[14px] left-[14px] font-display text-[11px] font-bold tracking-[.10em] uppercase text-white bg-[rgba(11,48,59,.26)] backdrop-blur-md px-3 py-[5px] rounded-full"
             >{{ t('gallery.badge.location') }}</span>
           </div>
         </div>

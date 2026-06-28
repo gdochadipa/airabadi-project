@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { computed, ref } from 'vue'
 import { useTranslations } from '../composables/useTranslations'
+import { useScrollAnimations } from '../composables/useScrollAnimations'
 
 const props = defineProps<{ lang?: 'id' | 'en' }>()
 const t = useTranslations(props.lang || 'id')
-
-gsap.registerPlugin(ScrollTrigger)
 
 const testimonials = computed(() => [
   {
@@ -33,35 +30,16 @@ const testimonials = computed(() => [
   },
 ])
 
-let ctx: gsap.Context
-
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.fromTo('.testi-hd',
-      { opacity: 0, y: 44 },
-      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
-        scrollTrigger: { trigger: '.testi-hd', start: 'top 88%', toggleActions: 'play none none none' } }
-    )
-    document.querySelectorAll('.testi-card').forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 44 },
-        { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out',
-          delay: i * 0.14,
-          scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' } }
-      )
-    })
-  })
-})
-
-onUnmounted(() => ctx?.revert())
+const sectionRef = ref<HTMLElement | null>(null)
+useScrollAnimations(sectionRef)
 </script>
 
 <template>
-  <section id="testi" class="py-[128px] bg-white">
+  <section id="testi" ref="sectionRef" class="py-[128px] bg-white">
     <div class="max-w-[1440px] mx-auto px-[clamp(24px,8vw,160px)]">
 
       <!-- Header -->
-      <div class="testi-hd text-center mb-16">
+      <div class="testi-hd text-center mb-16 anim-fade-up">
         <div class="inline-flex items-center justify-center gap-2 font-display text-[11px] font-bold tracking-[.15em] uppercase text-[#19A7CE] mb-5">
           <span class="w-[22px] h-[2px] bg-[#19A7CE] rounded inline-block" />
           {{ t('testi.eyebrow') }}
@@ -78,7 +56,7 @@ onUnmounted(() => ctx?.revert())
         <div
           v-for="(t, i) in testimonials"
           :key="i"
-          class="testi-card rounded-[22px] p-8 border transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_36px_rgba(11,48,59,.10)]"
+          class="testi-card rounded-[22px] p-8 border transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_36px_rgba(11,48,59,.10)] anim-fade-up"
           :class="t.featured
             ? 'border-transparent text-white'
             : 'border-[#DCE8EC] bg-white'"
@@ -110,7 +88,9 @@ onUnmounted(() => ctx?.revert())
           >
             <div
               class="w-[42px] h-[42px] rounded-full flex items-center justify-center font-display font-extrabold text-[16px]"
-              :class="t.featured ? 'bg-white/20 text-white' : 'bg-[#EAF6FB] text-[#19A7CE]'"
+              :class="t.featured 
+                ? 'bg-white/20 text-white ring-1 ring-white/30' 
+                : 'bg-gradient-to-br from-[#EAF6FB] to-[#DCE8EC] text-[#146C94] ring-1 ring-[#DCE8EC]'"
             >
               {{ t.avatar }}
             </div>
